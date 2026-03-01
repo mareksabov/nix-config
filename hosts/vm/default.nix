@@ -7,6 +7,10 @@
     ../../modules/system/locale.nix
     ../../modules/system/network.nix
     ../../modules/system/users.nix
+    ../../modules/system/audio.nix
+    ../../modules/desktop/hyprland.nix
+    ../../modules/desktop/greetd.nix
+    ../../modules/desktop/fonts.nix
   ];
 
   system.stateVersion = "25.05";
