@@ -6,7 +6,7 @@
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
       inter
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       dejavu_fonts
     ];
 

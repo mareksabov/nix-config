@@ -10,7 +10,7 @@
   };
 
   # Disable PulseAudio (conflicts with PipeWire)
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   # RealtimeKit for PipeWire priority
   security.rtkit.enable = true;
