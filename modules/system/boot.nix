@@ -3,16 +3,11 @@
 {
   boot.loader = {
     efi.canTouchEfiVariables = true;
-    grub = {
+    systemd-boot = {
       enable = true;
-      device = "nodev";
-      efiSupport = true;
-      useOSProber = true;
-      default = 0;
-      timeoutStyle = "menu";
-      gfxmodeEfi = "auto";
-      gfxpayloadEfi = "keep";
+      configurationLimit = 5;
     };
+    grub.enable = false;
   };
 
   # Zram swap
