@@ -56,6 +56,13 @@
     style.name = "fusion";
   };
 
+  # KDE/Dolphin: set Kitty as terminal for "Open Terminal Here"
+  xdg.configFile."kdeglobals".text = ''
+    [General]
+    TerminalApplication=kitty
+    TerminalService=kitty.desktop
+  '';
+
   xdg.enable = true;
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
