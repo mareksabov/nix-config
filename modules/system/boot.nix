@@ -9,6 +9,7 @@
       device = "nodev";      # EFI mode, nie MBR
       efiSupport = true;
       configurationLimit = 5;
+      useOSProber = true;    # Detekuje Windows, Arch, atd.
     };
   };
 
