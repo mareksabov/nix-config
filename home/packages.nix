@@ -45,6 +45,7 @@
     libnotify
 
     # System tools
+    socat
     btop
     fzf
     jq
