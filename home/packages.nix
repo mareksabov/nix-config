@@ -24,6 +24,7 @@
     kdePackages.kio-extras
     kdePackages.qtwayland
     kdePackages.breeze-icons
+    kdePackages.kservice
 
     # Browser
     brave
