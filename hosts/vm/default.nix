@@ -19,6 +19,8 @@
   home-manager.backupFileExtension = "bak";
   home-manager.users.marky = import ../../home;
 
+  nixpkgs.config.allowUnfree = true;
+
   system.stateVersion = "25.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
