@@ -1,8 +1,19 @@
 { config, pkgs, ... }:
 
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+      useOSProber = true;
+      default = 0;
+      timeoutStyle = "menu";
+      gfxmodeEfi = "auto";
+      gfxpayloadEfi = "keep";
+    };
+  };
 
   # Zram swap
   zramSwap = {
