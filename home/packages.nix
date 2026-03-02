@@ -72,5 +72,6 @@
     android-tools
     git-lfs
     gh
+    claude-code
   ];
 }
