@@ -24,7 +24,37 @@
     gtk.enable = true;
   };
 
-  gtk.enable = true;
+  # GTK theming
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  # Qt theming - use qt6ct with Fusion style
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "fusion";
+  };
 
   xdg.enable = true;
   xdg.mime.enable = true;

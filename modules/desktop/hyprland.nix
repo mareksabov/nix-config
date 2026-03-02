@@ -12,6 +12,7 @@
   };
 
   security.polkit.enable = true;
+  programs.dconf.enable = true;
 
   # Ensure .desktop files, MIME data, and KDE menus are visible to Dolphin
   environment.pathsToLink = [

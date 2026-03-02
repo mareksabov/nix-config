@@ -58,6 +58,9 @@
     shared-mime-info
     xdg-utils
 
+    # Cloud sync
+    nextcloud-client
+
     # Networking
     wget
 
