@@ -23,6 +23,14 @@
 
   # nix-ld: allows running unpatched dynamic binaries (Unity Hub, Android SDK, etc.)
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    openssl
+    curl
+    icu
+    libz
+  ];
 
   system.stateVersion = "25.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
