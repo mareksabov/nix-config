@@ -14,6 +14,8 @@
     ../../modules/desktop/greetd.nix
     ../../modules/desktop/fonts.nix
     ../../modules/system/virtualisation.nix
+    ../../modules/system/vpn.nix
+    ../../modules/system/security.nix
   ];
 
   home-manager.backupFileExtension = "bak";
