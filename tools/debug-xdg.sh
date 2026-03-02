@@ -1,21 +1,28 @@
 #!/usr/bin/env bash
-echo "=== applications.menu search ==="
-find /run/current-system/sw/etc/xdg/menus/ -name "*.menu" 2>/dev/null || echo "NO MENUS in /run/current-system/sw"
-find /etc/profiles/per-user/$USER/etc/xdg/menus/ -name "*.menu" 2>/dev/null || echo "NO MENUS in user profile"
-find /etc/xdg/menus/ -name "*.menu" 2>/dev/null || echo "NO MENUS in /etc/xdg"
-
+echo "=== Sycoca cache file ==="
+find ~/.cache -name "ksycoca6*" 2>/dev/null -exec ls -la {} \;
 echo ""
-echo "=== kservice package menu file ==="
-find /nix/store -maxdepth 2 -path "*/kservice*/etc" 2>/dev/null | head -5
 
+echo "=== Force rebuild sycoca ==="
+kbuildsycoca6 --noincremental 2>&1
 echo ""
-echo "=== XDG_CONFIG_DIRS ==="
-echo "$XDG_CONFIG_DIRS" | tr ':' '\n'
 
+echo "=== .desktop Categories sample ==="
+for f in /etc/profiles/per-user/$USER/share/applications/{brave-browser,kitty,mpv,org.kde.dolphin,nvim}.desktop; do
+  [ -f "$f" ] && echo "$(basename $f): $(grep '^Categories=' $f)"
+done
 echo ""
-echo "=== desktop-directories ==="
-ls /run/current-system/sw/share/desktop-directories/ 2>/dev/null | head -10 || echo "NONE"
 
+echo "=== Dolphin .desktop exists? ==="
+find /etc/profiles/per-user/$USER/share/applications /run/current-system/sw/share/applications -name "*dolphin*" 2>/dev/null
 echo ""
-echo "=== kbuildsycoca6 ==="
-which kbuildsycoca6 2>/dev/null && kbuildsycoca6 2>&1 || echo "NOT FOUND"
+
+echo "=== applications.menu content ==="
+cat /etc/xdg/menus/applications.menu 2>/dev/null | head -5
+echo ""
+
+echo "=== Kill dolphin and rebuild ==="
+pkill -f dolphin 2>/dev/null
+kbuildsycoca6 --noincremental 2>&1
+echo ""
+echo "Now open Dolphin fresh and try Open With."
