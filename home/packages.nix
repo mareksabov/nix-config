@@ -68,10 +68,12 @@
     # Development - Tools
     vscode
     unityhub
+    p7zip
     blender
     android-tools
     git-lfs
     gh
     claude-code
+    gemini-cli
   ];
 }

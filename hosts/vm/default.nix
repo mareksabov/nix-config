@@ -26,10 +26,39 @@
   programs.nix-ld.libraries = with pkgs; [
     stdenv.cc.cc.lib
     zlib
+    zstd
     openssl
     curl
     icu
     libz
+    libGL
+    libGLU
+    libuuid
+    libX11
+    libXext
+    libXrender
+    libXi
+    libXrandr
+    libXcursor
+    libXdamage
+    libXcomposite
+    libXfixes
+    libxcb
+    libXxf86vm
+    libXinerama
+    alsa-lib
+    fontconfig
+    freetype
+    glib
+    gtk3
+    nss
+    nspr
+    dbus
+    expat
+    libdrm
+    mesa
+    libxshmfence
+    libxkbcommon
   ];
 
   system.stateVersion = "25.05";
