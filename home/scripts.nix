@@ -9,6 +9,88 @@
     '';
   };
 
+  # Clipboard TUI - interactive clipboard history viewer with fzf
+  home.file.".local/bin/clipboard-tui" = {
+    executable = true;
+    text = ''
+      #!/bin/bash
+      # Clipboard TUI - interaktívne prezeranie a výber z clipboard histórie
+
+      set -e
+
+      show_help() {
+          echo "Clipboard TUI - cliphist + fzf"
+          echo ""
+          echo "Použitie: clipboard-tui [príkaz]"
+          echo ""
+          echo "Príkazy:"
+          echo "  (bez argumentu)  Interaktívny výber z histórie"
+          echo "  delete           Vymazať vybrané položky z histórie"
+          echo "  wipe             Vymazať celú históriu"
+          echo "  help             Zobraziť túto nápovedu"
+      }
+
+      select_and_copy() {
+          local selected
+          selected=$(cliphist list | fzf \
+              --height=50% \
+              --layout=reverse \
+              --border=rounded \
+              --prompt="Clipboard > " \
+              --header="Enter=Kopírovať | Ctrl-D=Vymazať | Ctrl-W=Vymazať všetko | Esc=Zrušiť" \
+              --bind="ctrl-d:execute(echo {} | cliphist delete)+reload(cliphist list)" \
+              --bind="ctrl-w:execute(cliphist wipe)+abort" \
+              --preview="echo {} | cliphist decode | head -20" \
+              --preview-window=down:3:wrap)
+
+          if [ -n "$selected" ]; then
+              echo "$selected" | cliphist decode | wl-copy
+              echo "Skopírované do clipboardu!"
+          fi
+      }
+
+      delete_items() {
+          local selected
+          selected=$(cliphist list | fzf \
+              --multi \
+              --height=50% \
+              --layout=reverse \
+              --border=rounded \
+              --prompt="Vymazať > " \
+              --header="Tab=Označiť | Enter=Vymazať označené | Esc=Zrušiť" \
+              --preview="echo {} | cliphist decode | head -20" \
+              --preview-window=down:3:wrap)
+
+          if [ -n "$selected" ]; then
+              echo "$selected" | while read -r line; do
+                  echo "$line" | cliphist delete
+              done
+              echo "Položky vymazané!"
+          fi
+      }
+
+      case "''${1:-}" in
+          help|--help|-h)
+              show_help
+              ;;
+          delete)
+              delete_items
+              ;;
+          wipe)
+              read -p "Naozaj vymazať celú históriu? [y/N] " -n 1 -r
+              echo
+              if [[ $REPLY =~ ^[Yy]$ ]]; then
+                  cliphist wipe
+                  echo "História vymazaná!"
+              fi
+              ;;
+          *)
+              select_and_copy
+              ;;
+      esac
+    '';
+  };
+
   # Tablet follow focus - maps Wacom tablet to the currently focused monitor
   home.file.".local/bin/tablet-follow-focus" = {
     executable = true;
