@@ -70,6 +70,12 @@
   # Default terminal for XDG
   xdg.configFile."xdg-terminals.list".text = "kitty\n";
 
+  # nnn file opener plugin
+  xdg.configFile."nnn/plugins/nuke" = {
+    source = ../dotfiles/nnn/plugins/nuke;
+    executable = true;
+  };
+
   xdg.enable = true;
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
