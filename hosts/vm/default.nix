@@ -21,6 +21,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # nix-ld: allows running unpatched dynamic binaries (Unity Hub, Android SDK, etc.)
+  programs.nix-ld.enable = true;
+
   system.stateVersion = "25.05";
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
