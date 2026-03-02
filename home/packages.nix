@@ -24,6 +24,9 @@
     mpv
     pavucontrol
 
+    # Notifications
+    libnotify
+
     # System tools
     btop
     fzf
