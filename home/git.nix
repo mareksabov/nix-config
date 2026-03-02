@@ -3,9 +3,9 @@
 {
   programs.git = {
     enable = true;
-    userName = "Marek Sabov";
-    userEmail = "marek.sabov@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Marek Sabov";
+      user.email = "marek.sabov@gmail.com";
       init.defaultBranch = "main";
       credential.helper = "store";
     };
