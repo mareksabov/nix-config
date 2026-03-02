@@ -20,6 +20,9 @@
     memoryPercent = 50;
   };
 
+  # NTFS podpora (pre externé disky)
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # SSD TRIM
   services.fstrim = {
     enable = true;
