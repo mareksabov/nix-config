@@ -19,10 +19,26 @@
 
     # File managers
     nnn
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
+    kdePackages.kio-extras
+    kdePackages.qtwayland
+    kdePackages.breeze-icons
+
+    # Browser
+    brave
+
+    # Communication
+    vesktop
+    evolution
 
     # Media
     mpv
+    vlc
     pavucontrol
+
+    # Office
+    libreoffice-fresh
 
     # Notifications
     libnotify
@@ -36,6 +52,10 @@
 
     # Editors
     neovim
+
+    # XDG / file associations
+    shared-mime-info
+    xdg-utils
 
     # Networking
     wget

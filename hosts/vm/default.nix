@@ -8,6 +8,8 @@
     ../../modules/system/network.nix
     ../../modules/system/users.nix
     ../../modules/system/audio.nix
+    ../../modules/system/tablet.nix
+    ../../modules/system/logitech.nix
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/greetd.nix
     ../../modules/desktop/fonts.nix
