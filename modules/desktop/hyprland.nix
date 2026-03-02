@@ -1,10 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-  };
+  programs.hyprland.enable = true;
 
   xdg.portal = {
     enable = true;
