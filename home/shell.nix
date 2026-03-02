@@ -8,6 +8,8 @@
       PS1='[\u@\h \W]\$ '
       set -o vi
 
+      export NNN_OPENER="$HOME/.config/nnn/plugins/nuke"
+
       # Atuin shell history
       if command -v atuin &> /dev/null; then
         eval "$(atuin init bash)"
@@ -22,7 +24,6 @@
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      NNN_OPENER = "$HOME/.config/nnn/plugins/nuke";
       GUI = "1";
     };
   };
