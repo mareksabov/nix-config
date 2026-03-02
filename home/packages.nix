@@ -35,6 +35,7 @@
     kdePackages.kdeconnect-kde
 
     # Media
+    ffmpeg
     mpv
     vlc
     pavucontrol
