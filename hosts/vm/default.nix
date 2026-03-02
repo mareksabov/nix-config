@@ -16,6 +16,7 @@
     ../../modules/system/virtualisation.nix
     ../../modules/system/vpn.nix
     ../../modules/system/security.nix
+    ../../modules/system/services.nix
   ];
 
   home-manager.backupFileExtension = "bak";

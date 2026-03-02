@@ -63,6 +63,13 @@
     TerminalService=kitty.desktop
   '';
 
+  # Brave + VS Code: force X11 backend (Wayland fix)
+  xdg.configFile."brave-flags.conf".text = "--ozone-platform=x11\n";
+  xdg.configFile."code-flags.conf".text = "--ozone-platform=x11\n";
+
+  # Default terminal for XDG
+  xdg.configFile."xdg-terminals.list".text = "kitty\n";
+
   xdg.enable = true;
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;

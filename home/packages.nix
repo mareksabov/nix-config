@@ -32,11 +32,15 @@
     # Communication
     vesktop
     evolution
+    kdePackages.kdeconnect-kde
 
     # Media
     mpv
     vlc
     pavucontrol
+
+    # Creative
+    krita
 
     # Office
     libreoffice-fresh
@@ -47,10 +51,14 @@
     # System tools
     socat
     btop
+    fastfetch
+    tmux
     fzf
     jq
     trash-cli
     wlogout
+    wlr-randr
+    unrar
 
     # Editors
     neovim
