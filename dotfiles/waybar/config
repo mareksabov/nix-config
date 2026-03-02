@@ -3,7 +3,7 @@
     "position": "top",
     "height": 30,
     "spacing": 4,
-    "output": ["DP-1", "DP-2", "HDMI-A-1"],
+    "output": ["DP-1", "DP-2", "HDMI-A-1", "Virtual-1"],
 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
