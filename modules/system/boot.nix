@@ -9,7 +9,16 @@
       device = "nodev";      # EFI mode, nie MBR
       efiSupport = true;
       configurationLimit = 5;
-      useOSProber = true;    # Detekuje Windows, Arch, atd.
+      useOSProber = false;
+      extraEntries = ''
+        menuentry "Arch Linux" --class arch --class gnu-linux --class gnu --class os {
+          insmod part_gpt
+          insmod ext2
+          search --no-floppy --fs-uuid --set=root 38591bbf-faf7-458b-a051-1452c2b16d4f
+          linux /boot/vmlinuz-linux root=UUID=38591bbf-faf7-458b-a051-1452c2b16d4f rw zswap.enabled=0 rootfstype=ext4 loglevel=3 quiet nvidia_drm.modeset=1
+          initrd /boot/intel-ucode.img /boot/initramfs-linux.img
+        }
+      '';
     };
   };
 
