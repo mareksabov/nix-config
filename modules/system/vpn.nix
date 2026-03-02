@@ -10,7 +10,7 @@
   environment.systemPackages = with pkgs; [
     # ProtonVPN
     protonvpn-gui
-    protonvpn-cli_2
+    proton-vpn-cli
 
     # OpenVPN + NetworkManager integration
     openvpn
