@@ -22,7 +22,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
-      NNN_OPENER = "~/.config/nnn/plugins/nuke";
+      NNN_OPENER = "$HOME/.config/nnn/plugins/nuke";
       GUI = "1";
     };
   };
