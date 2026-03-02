@@ -13,11 +13,18 @@
 
   security.polkit.enable = true;
 
-  # Ensure .desktop files and MIME data are visible to Dolphin/KDE apps
-  environment.pathsToLink = [ "/share/applications" "/share/mime" "/share/icons" ];
+  # Ensure .desktop files, MIME data, and KDE menus are visible to Dolphin
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/mime"
+    "/share/icons"
+    "/etc/xdg/menus"
+    "/share/desktop-directories"
+  ];
 
   environment.systemPackages = with pkgs; [
     hyprpolkitagent
     desktop-file-utils
+    kdePackages.kservice
   ];
 }

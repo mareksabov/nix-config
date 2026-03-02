@@ -1,28 +1,21 @@
 #!/usr/bin/env bash
-echo "=== XDG_DATA_DIRS ==="
-echo "$XDG_DATA_DIRS" | tr ':' '\n'
+echo "=== applications.menu search ==="
+find /run/current-system/sw/etc/xdg/menus/ -name "*.menu" 2>/dev/null || echo "NO MENUS in /run/current-system/sw"
+find /etc/profiles/per-user/$USER/etc/xdg/menus/ -name "*.menu" 2>/dev/null || echo "NO MENUS in user profile"
+find /etc/xdg/menus/ -name "*.menu" 2>/dev/null || echo "NO MENUS in /etc/xdg"
 
 echo ""
-echo "=== System .desktop files ==="
-ls /run/current-system/sw/share/applications/ 2>/dev/null | head -20 || echo "NONE"
+echo "=== kservice package menu file ==="
+find /nix/store -maxdepth 2 -path "*/kservice*/etc" 2>/dev/null | head -5
 
 echo ""
-echo "=== User profile .desktop files ==="
-ls /etc/profiles/per-user/$USER/share/applications/ 2>/dev/null | head -20 || echo "NONE"
+echo "=== XDG_CONFIG_DIRS ==="
+echo "$XDG_CONFIG_DIRS" | tr ':' '\n'
 
 echo ""
-echo "=== Home .desktop files ==="
-ls ~/.local/share/applications/ 2>/dev/null | head -20 || echo "NONE"
-
-echo ""
-echo "=== Nix profile .desktop files ==="
-ls ~/.nix-profile/share/applications/ 2>/dev/null | head -20 || echo "NONE"
+echo "=== desktop-directories ==="
+ls /run/current-system/sw/share/desktop-directories/ 2>/dev/null | head -10 || echo "NONE"
 
 echo ""
 echo "=== kbuildsycoca6 ==="
-which kbuildsycoca6 2>/dev/null || echo "NOT FOUND"
-
-echo ""
-echo "=== MIME database ==="
-ls /run/current-system/sw/share/mime/ 2>/dev/null | head -10 || echo "NONE"
-ls /etc/profiles/per-user/$USER/share/mime/ 2>/dev/null | head -10 || echo "NONE"
+which kbuildsycoca6 2>/dev/null && kbuildsycoca6 2>&1 || echo "NOT FOUND"
