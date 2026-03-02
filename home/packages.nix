@@ -69,6 +69,8 @@
     vscode
     unityhub
     p7zip
+    unzip
+    zip
     blender
     android-tools
     git-lfs
