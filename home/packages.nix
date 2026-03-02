@@ -49,6 +49,7 @@
     libnotify
 
     # System tools
+    file
     socat
     btop
     fastfetch
