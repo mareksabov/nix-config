@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
-echo "Building KDE sycoca cache..."
-kbuildsycoca6 2>&1
+echo "Clearing old sycoca cache..."
+rm -rf ~/.cache/ksycoca6*
+echo "Rebuilding KDE sycoca cache..."
+XDG_MENU_PREFIX=plasma- kbuildsycoca6 --noincremental 2>&1
 echo ""
-echo "Done. Restart Dolphin and try Open With again."
+echo "Done. Kill Dolphin and reopen it."
+pkill -f dolphin 2>/dev/null
