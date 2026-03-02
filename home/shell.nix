@@ -24,7 +24,6 @@
       VISUAL = "nvim";
       NNN_OPENER = "~/.config/nnn/plugins/nuke";
       GUI = "1";
-      PATH = "$HOME/.local/bin:$HOME/.dotnet/tools:$HOME/Android/Sdk/platform-tools:$PATH";
     };
   };
 
