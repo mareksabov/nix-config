@@ -5,6 +5,7 @@
     enable = true;
     shellOptions = [ "histappend" ];
     initExtra = ''
+      PS1='[\u@\h \W]\$ '
       set -o vi
 
       # Atuin shell history
