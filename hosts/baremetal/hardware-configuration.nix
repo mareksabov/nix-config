@@ -18,6 +18,12 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/praca_hry" =
+    { device = "/dev/disk/by-uuid/08F272F3F272E3FA";
+      fsType = "ntfs-3g";
+      options = [ "rw" "uid=1000" "gid=100" "dmask=022" "fmask=033" ];
+    };
+
   fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/FA76-268E";
       fsType = "vfat";
