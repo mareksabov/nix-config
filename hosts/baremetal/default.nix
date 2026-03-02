@@ -18,6 +18,9 @@
     ../../modules/system/services.nix
   ];
 
+  # EFI na /boot/efi (100MB partícia je malá, /boot ostáva na root)
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   home-manager.backupFileExtension = "bak";
   home-manager.users.marky = import ../../home;
 
