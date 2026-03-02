@@ -13,6 +13,7 @@
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/greetd.nix
     ../../modules/desktop/fonts.nix
+    ../../modules/system/virtualisation.nix
   ];
 
   home-manager.backupFileExtension = "bak";

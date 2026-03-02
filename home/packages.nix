@@ -60,5 +60,17 @@
 
     # Networking
     wget
+
+    # Development - Languages & SDKs
+    python3
+    jdk17
+
+    # Development - Tools
+    vscode
+    unityhub
+    blender
+    android-tools
+    git-lfs
+    gh
   ];
 }

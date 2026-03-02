@@ -4,7 +4,7 @@
   users.users.marky = {
     isNormalUser = true;
     description = "Marek Sabov";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
     shell = pkgs.bash;
   };
 
