@@ -3,11 +3,13 @@
 {
   boot.loader = {
     efi.canTouchEfiVariables = true;
-    systemd-boot = {
+    systemd-boot.enable = false;
+    grub = {
       enable = true;
+      device = "nodev";      # EFI mode, nie MBR
+      efiSupport = true;
       configurationLimit = 5;
     };
-    grub.enable = false;
   };
 
   # Zram swap
