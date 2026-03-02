@@ -8,5 +8,10 @@
     shell = pkgs.bash;
   };
 
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+  ];
+
   security.sudo.wheelNeedsPassword = true;
 }

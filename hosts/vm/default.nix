@@ -13,6 +13,7 @@
     ../../modules/desktop/fonts.nix
   ];
 
+  home-manager.backupFileExtension = "bak";
   home-manager.users.marky = import ../../home;
 
   system.stateVersion = "25.05";
