@@ -17,5 +17,14 @@
   home.homeDirectory = "/home/marky";
   home.stateVersion = "25.05";
 
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+  };
+
+  gtk.enable = true;
+
   programs.home-manager.enable = true;
 }

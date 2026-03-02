@@ -5,5 +5,6 @@
 
   xdg.configFile = {
     "wofi/config".source = ../dotfiles/wofi/config;
+    "wofi/style.css".source = ../dotfiles/wofi/style.css;
   };
 }
