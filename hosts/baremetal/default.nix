@@ -16,6 +16,7 @@
     ../../modules/system/vpn.nix
     ../../modules/system/security.nix
     ../../modules/system/services.nix
+    ../../modules/system/nvidia.nix
   ];
 
   # EFI na /boot/efi (100MB partícia je malá, /boot ostáva na root)
