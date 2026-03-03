@@ -10,6 +10,7 @@
   # Ollama - local AI
   services.ollama.enable = true;
   services.ollama.host = "0.0.0.0";
+  systemd.services.ollama.wantedBy = pkgs.lib.mkForce [];
   networking.firewall.allowedTCPPorts = [ 11434 ];
 
   # TeamViewer
