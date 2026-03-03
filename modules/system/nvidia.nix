@@ -12,5 +12,5 @@
   hardware.graphics.enable = true;
 
   # Ollama - enable CUDA acceleration
-  services.ollama.acceleration = "cuda";
+  services.ollama.package = pkgs.ollama-cuda;
 }
