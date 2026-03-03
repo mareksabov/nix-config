@@ -18,6 +18,13 @@
           linux /boot/vmlinuz-linux root=UUID=38591bbf-faf7-458b-a051-1452c2b16d4f rw zswap.enabled=0 rootfstype=ext4 loglevel=3 quiet nvidia_drm.modeset=1
           initrd /boot/intel-ucode.img /boot/initramfs-linux.img
         }
+        menuentry "Windows 11" --class windows --class os {
+          insmod part_gpt
+          insmod fat
+          insmod chain
+          search --no-floppy --fs-uuid --set=root FA76-268E
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
       '';
     };
   };

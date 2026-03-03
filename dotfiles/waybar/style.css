@@ -105,6 +105,12 @@ button:hover {
     color: #565f89;
 }
 
+#custom-voice.recording {
+    color: #f7768e;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
 #tray {
     margin-right: 5px;
 }

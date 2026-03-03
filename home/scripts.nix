@@ -13,7 +13,7 @@
   home.file.".local/bin/clipboard-tui" = {
     executable = true;
     text = ''
-      #!/bin/bash
+      #!/usr/bin/env bash
       # Clipboard TUI - interaktívne prezeranie a výber z clipboard histórie
 
       set -e
@@ -95,7 +95,7 @@
   home.file.".local/bin/tablet-follow-focus" = {
     executable = true;
     text = ''
-      #!/bin/bash
+      #!/usr/bin/env bash
       # Automatically maps Wacom tablet to the currently focused monitor
 
       # Kill previous instances (not self or parent)
@@ -145,6 +145,93 @@
                   ;;
           esac
       done
+    '';
+  };
+
+  # Voice dictation - toggle nahrávanie a prepis cez whisper.cpp (CUDA)
+  home.file.".local/bin/voice-dictate" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      # Voice dictation using whisper.cpp with CUDA acceleration
+      # SUPER+W: first press starts recording, second press stops and transcribes
+
+      PIDFILE="/tmp/voice-dictate.pid"
+      WAVFILE="/tmp/voice-dictate.wav"
+      MODEL_DIR="$HOME/.local/share/whisper-cpp"
+      MODEL="$MODEL_DIR/ggml-large-v3.bin"
+
+      if [ ! -f "$MODEL" ]; then
+          notify-send -u critical "Voice Dictate" "Model not found. Run: voice-dictate-setup"
+          exit 1
+      fi
+
+      if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+          # Stop recording
+          kill "$(cat "$PIDFILE")" 2>/dev/null
+          wait "$(cat "$PIDFILE")" 2>/dev/null
+          rm -f "$PIDFILE"
+
+          notify-send -r 9999 "Voice Dictate" "Transcribing..."
+
+          # Transcribe with CUDA acceleration
+          TEXT=$(whisper-cli -m "$MODEL" -l sk -f "$WAVFILE" --no-timestamps -t 8 2>/dev/null \
+              | grep -v '^\[' | sed 's/^ *//' | sed '/^$/d' | tr '\n' ' ' | sed 's/ *$//')
+
+          rm -f "$WAVFILE"
+
+          if [ -n "$TEXT" ]; then
+              echo -n "$TEXT" | wl-copy
+              notify-send -r 9999 "Voice Dictate" "$TEXT"
+          else
+              notify-send -r 9999 "Voice Dictate" "No speech detected" -t 2000
+          fi
+      else
+          # Start recording (16kHz mono WAV for whisper)
+          rm -f "$WAVFILE" "$PIDFILE"
+          pw-record --rate=16000 --channels=1 --format=s16 "$WAVFILE" &
+          echo $! > "$PIDFILE"
+          notify-send -r 9999 "Voice Dictate" "Recording... Press SUPER+W again to stop" -t 0
+      fi
+    '';
+  };
+
+  # Voice dictate status for Waybar
+  home.file.".local/bin/voice-dictate-status" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      if [ -f /tmp/voice-dictate.pid ] && kill -0 "$(cat /tmp/voice-dictate.pid)" 2>/dev/null; then
+          echo '{"text": "REC", "class": "recording"}'
+      else
+          echo '{"text": "", "class": ""}'
+      fi
+    '';
+  };
+
+  # Voice dictate setup - download whisper large-v3 model
+  home.file.".local/bin/voice-dictate-setup" = {
+    executable = true;
+    text = ''
+      #!/usr/bin/env bash
+      MODEL_DIR="$HOME/.local/share/whisper-cpp"
+      mkdir -p "$MODEL_DIR"
+      cd "$MODEL_DIR"
+
+      if [ -f "ggml-large-v3.bin" ]; then
+          echo "Model already exists at $MODEL_DIR/ggml-large-v3.bin"
+          exit 0
+      fi
+
+      echo "Downloading whisper large-v3 model (~3.1 GB)..."
+      whisper-cpp-download-ggml-model large-v3
+
+      if [ -f "ggml-large-v3.bin" ]; then
+          echo "Done! Model saved to $MODEL_DIR/ggml-large-v3.bin"
+      else
+          echo "Download failed!"
+          exit 1
+      fi
     '';
   };
 

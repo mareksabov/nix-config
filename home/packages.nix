@@ -91,5 +91,9 @@
     gh
     claude-code
     gemini-cli
+
+    # Voice dictation (whisper.cpp + Vulkan)
+    whisper-cpp-vulkan
+    wtype
   ];
 }

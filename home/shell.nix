@@ -5,6 +5,7 @@
     enable = true;
     shellOptions = [ "histappend" ];
     initExtra = ''
+      export PATH="$HOME/.local/bin:$PATH"
       PS1='[\u@\h \W]\$ '
       set -o vi
 

@@ -7,7 +7,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "hyprland/language", "pulseaudio", "network", "cpu", "memory", "temperature"],
+    "modules-right": ["custom/voice", "tray", "hyprland/language", "pulseaudio", "network", "cpu", "memory", "temperature"],
 
     "hyprland/workspaces": {
         "disable-scroll": false,
@@ -68,6 +68,13 @@
         "format-linked": " {ifname} (No IP)",
         "format-disconnected": "⚠ Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "custom/voice": {
+        "exec": "~/.local/bin/voice-dictate-status",
+        "return-type": "json",
+        "interval": 1,
+        "on-click": "~/.local/bin/voice-dictate"
     },
 
     "pulseaudio": {
