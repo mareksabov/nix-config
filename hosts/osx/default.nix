@@ -24,6 +24,7 @@
   home-manager.users.marky = import ../../home;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [

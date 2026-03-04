@@ -26,7 +26,7 @@
       };
 
       osx = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        system = "aarch64-linux";
         modules = [
           ./hosts/osx
           home-manager.nixosModules.home-manager
