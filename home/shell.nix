@@ -9,12 +9,18 @@
       PS1='[\u@\h \W]\$ '
       set -o vi
 
-      export NNN_OPENER="$HOME/.config/nnn/plugins/nuke"
+      # Dynamically update PS1 and tab title based on nix shell
+      # Must be in PROMPT_COMMAND because nix develop sets IN_NIX_SHELL after .bashrc
+      __nix_ps1() {
+        if [ -n "$IN_NIX_SHELL" ]; then
+          PS1='\[\e]2;[nix] \u@\h \w\a\][\[\e[36m\]nix\[\e[0m\]:\u@\h \W]\$ '
+        else
+          PS1='\[\e]2;\u@\h \w\a\][\u@\h \W]\$ '
+        fi
+      }
+      PROMPT_COMMAND="__nix_ps1;''${PROMPT_COMMAND}"
 
-      # Atuin shell history
-      if command -v atuin &> /dev/null; then
-        eval "$(atuin init bash)"
-      fi
+      export NNN_OPENER="$HOME/.config/nnn/plugins/nuke"
     '';
     shellAliases = {
       vim = "nvim";
