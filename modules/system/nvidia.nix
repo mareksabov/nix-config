@@ -12,5 +12,7 @@
   hardware.graphics.enable = true;
 
   # Ollama - enable CUDA acceleration
-  services.ollama.package = pkgs.ollama-cuda;
+  services.ollama.package = pkgs.ollama-cuda.override {
+    cudaArches = [ "sm_89" ];
+  };
 }
