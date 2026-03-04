@@ -24,7 +24,14 @@
   home-manager.users.marky = import ../../home;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnsupportedSystem = true;
+
+  # x86_64-only balíky nahradíme prázdnym balíkom
+  nixpkgs.overlays = [
+    (final: prev: {
+      unityhub = final.emptyDirectory;
+      blender = final.emptyDirectory;
+    })
+  ];
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
