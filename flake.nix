@@ -25,18 +25,6 @@
         ];
       };
 
-      osx = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          ./hosts/osx
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          }
-        ];
-      };
-
       baremetal = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
