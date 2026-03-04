@@ -20,6 +20,9 @@
   # VM nepotrebuje Arch/Windows GRUB entries
   boot.loader.grub.extraEntries = lib.mkForce "";
 
+  # Kitty potrebuje software rendering vo VM
+  environment.sessionVariables.LIBGL_ALWAYS_SOFTWARE = "1";
+
   home-manager.backupFileExtension = "bak";
   home-manager.users.marky = import ../../home;
 
