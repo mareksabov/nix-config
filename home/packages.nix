@@ -78,6 +78,7 @@
     # Development - Languages & SDKs
     python3
     jdk17
+    dotnet-sdk_8
 
     # Development - Tools
     vscode
